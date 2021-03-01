@@ -2,6 +2,14 @@
 
 set -e
 
+CONFIG="install.conf.yaml"
+DOTBOT_DIR="dotbot"
+
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "${BASEDIR}"
+
 while [ "$#" -gt 0 ]; do
   case "$1" in
   -a | --authorize-github)
@@ -9,6 +17,7 @@ while [ "$#" -gt 0 ]; do
     shift 1
     ;;
   -p | --pull)
+    pushd 
     git pull
     shift 1
     ;;
@@ -19,13 +28,6 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
-
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
