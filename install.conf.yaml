@@ -16,6 +16,7 @@
     ~/.bashrc:
       force: true
       path: bashrc
+    ~/.gitconfig:
 
 - create:
     - ~/downloads
