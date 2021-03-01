@@ -1,6 +1,8 @@
 - defaults:
     link:
       relink: true
+    shell:
+      quiet: true
 
 - clean:
     ~/:
@@ -19,12 +21,14 @@
     ~/.gitconfig:
 
 - create:
-    - ~/downloads
-    - ~/.vim/undo-history
-    - ~/bin
+    ~/downloads:
+    ~/.vim/undo-history:
+    ~/bin:
+    ~/.ssh:
+      mode: 700
 
 - shell:
-    - [git submodule update --init --recursive, Installing submodules]
-    - [wget https://starship.rs/install.sh -O starship-install.sh && chmod u+x ./starship-install.sh && ./starship-install.sh -y -b ~/bin && rm starship-install.sh, Installing starship]
+    - [wget -q https://starship.rs/install.sh -O starship-install.sh && chmod u+x ./starship-install.sh && ./starship-install.sh -y -b ~/bin && rm starship-install.sh, Installing starship]
     - ['if [ -d ~/.fzf ]; then pushd ~/.fzf; git pull; popd; else git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; fi && ~/.fzf/install --all', Installing fzf]
     - ['sudo apt update && sudo apt install python3-dev python3-pip python3-setuptools && sudo pip3 install thefuck', Installing thefuck]
+    - ['if [ ! -z $AUTH_GITHUB ]; then if [ -f ~/.ssh/authorized_keys ]; then diff <(curl -s https://github.com/gardient.keys | sort) <(sort ~/.ssh/authorized_keys) >> ~/.ssh/authorized_keys; else curl -s https://github.com/gardient.keys > ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_keys; fi; fi;', Getting public keys from github (if option given)]
