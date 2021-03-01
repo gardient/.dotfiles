@@ -8,7 +8,9 @@ while [ "$#" -gt 0 ]; do
     export AUTH_GITHUB=1
     shift 1
     ;;
-
+  -p | --pull)
+    git pull
+    shift 1
   *)
     echo " X Unknown option: $1"
     exit 1
