@@ -1,0 +1,29 @@
+- defaults:
+    link:
+      relink: true
+
+- clean:
+    ~/:
+    ~/.config:
+      recursive: true
+
+- link:
+    ~/.bash_aliases: bash_aliases
+    ~/.config/:
+      glob: true
+      create: true
+      path: config/*
+    ~/.bashrc:
+      force: true
+      path: bashrc
+
+- create:
+    - ~/downloads
+    - ~/.vim/undo-history
+    - ~/bin
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+    - [wget https://starship.rs/install.sh -O starship-install.sh && chmod u+x ./starship-install.sh && ./starship-install.sh -y -b ~/bin && rm starship-install.sh, Installing starship]
+    - ['if [ -d ~/.fzf ]; then pushd ~/.fzf; git pull; popd; else git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; fi && ~/.fzf/install --all', Installing fzf]
+    - ['sudo apt update && sudo apt install python3-dev python3-pip python3-setuptools && sudo pip3 install thefuck', Installing thefuck]

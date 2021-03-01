@@ -1,0 +1,15 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+[user]
+	name = Gardient
+	email = gardient@users.noreply.github.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = true
+[fetch]
+	prune = true
