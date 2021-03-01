@@ -11,6 +11,7 @@ while [ "$#" -gt 0 ]; do
   -p | --pull)
     git pull
     shift 1
+    ;;
   *)
     echo " X Unknown option: $1"
     exit 1
