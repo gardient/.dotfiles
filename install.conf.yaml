@@ -10,7 +10,9 @@
       recursive: true
 
 - link:
-    ~/.bash_aliases: bash_aliases
+    ~/.bash_aliases:
+      force: true
+      path: bash_aliases
     ~/.config/:
       glob: true
       create: true
