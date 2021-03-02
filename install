@@ -17,7 +17,6 @@ while [ "$#" -gt 0 ]; do
     shift 1
     ;;
   -p | --pull)
-    pushd 
     git pull
     shift 1
     ;;
