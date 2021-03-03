@@ -1,0 +1,5 @@
+info "Installing apt dependencies"
+
+sudo apt install jq -y > $output
+
+success "Installed apt dependencies"

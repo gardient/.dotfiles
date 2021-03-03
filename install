@@ -9,24 +9,6 @@ DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
-
-while [ "$#" -gt 0 ]; do
-  case "$1" in
-  -a | --authorize-github)
-    export AUTH_GITHUB=1
-    shift 1
-    ;;
-  -p | --pull)
-    git pull
-    shift 1
-    ;;
-  *)
-    echo " X Unknown option: $1"
-    exit 1
-    ;;
-  esac
-done
-
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
