@@ -3,7 +3,7 @@
 set -e
 
 output=/dev/null
-if [ $DEBUG == 'verbose' ]; then
+if [ "$DEBUG" == 'verbose' ]; then
   output=/dev/stdout
 fi
 
@@ -20,11 +20,9 @@ success() {
   printf "\033[0;32m[SUCCESS] ${@}\033[0m\n"
 }
 debug() {
-  if [ ! -z $DEBUG ] ; then printf "\033[0;37m[DEBUG]${@}\033[0m\n"; fi
+  if [ ! -z $DEBUG ] ; then printf "\033[0;37m  [DEBUG] ${@}\033[0m\n"; fi
 }
 
 for f in ./scripts/*.sh; do
   . "$f"
 done
-
-exit $!
