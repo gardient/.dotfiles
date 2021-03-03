@@ -13,3 +13,5 @@
 	interactive = true
 [fetch]
 	prune = true
+[pull]
+  rebase = false
