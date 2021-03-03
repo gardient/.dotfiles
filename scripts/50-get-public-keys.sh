@@ -4,7 +4,7 @@ if [ ! -z $AUTH_GITHUB ]; then
 
   if [ -f ~/.ssh/authorized_keys ]; then
     debug "getting diff"
-    diff --new-line-format="" --unchanged-line-format="" <(curl -s https://github.com/gardient.keys | sort) <(sort ~/.ssh/authorized_keys) >> ~/.ssh/authorized_keys
+    diff --new-line-format="" --unchanged-line-format="" <(curl -s https://github.com/gardient.keys | sort) <(sort ~/.ssh/authorized_keys) >> ~/.ssh/authorized_keys || echo '' > /dev/null
   else
     debug "Creating authorized keys"
     curl -s https://github.com/gardient.keys > ~/.ssh/authorized_keys
