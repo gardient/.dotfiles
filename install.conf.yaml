@@ -27,7 +27,7 @@
     ~/.vim/undo-history:
     ~/bin:
     ~/.ssh:
-      mode: 700
+      mode: 0700
 
 - shell:
     - command: ./run-all-scripts.sh
