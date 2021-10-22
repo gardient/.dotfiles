@@ -21,6 +21,9 @@
       force: true
       path: files/bashrc
     ~/.gitconfig: files/gitconfig
+    ~/.vimrc:
+      force: true
+      path: files/vimrc
 
 - create:
     ~/downloads:
