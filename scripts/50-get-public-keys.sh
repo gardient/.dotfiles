@@ -15,3 +15,4 @@ if [ ! -z $AUTH_GITHUB ]; then
 else
   success "skipping get keys from GitHub"
 fi
+
