@@ -24,6 +24,9 @@
     ~/.vimrc:
       force: true
       path: files/vimrc
+    ~/.inputrc:
+      force: true
+      path: files/inputrc
 
 - create:
     ~/downloads:
