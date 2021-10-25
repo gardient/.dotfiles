@@ -120,6 +120,10 @@ if [ -d $HOME/bin ]; then
   export PATH=$PATH:$HOME/bin
 fi
 
+if [ -d $HOME/.local/bin ]; then
+  export PATH=$PATH:$HOME/.local/bin
+fi
+
 eval "$(starship init bash)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

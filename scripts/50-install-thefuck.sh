@@ -6,7 +6,7 @@ if [[ -z $(type -P fuck) || -n $UPDATE ]]; then
   debug "installing python stuff"
   sudo apt install python3-dev python3-pip python3-setuptools -y > $output
   debug "pip installing thefuck"
-  sudo pip3 install thefuck --user > $output
+  pip3 install thefuck --user > $output
 
   success "thefuck installed"
 else
