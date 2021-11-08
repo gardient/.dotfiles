@@ -9,3 +9,4 @@ alias aptgrade='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 alias doit='sudo $(history -p \!\!)'
 alias sudo='sudo '
 alias ehco='echo '
+alias loaddotenv='set -a; source .env; set +a;'
