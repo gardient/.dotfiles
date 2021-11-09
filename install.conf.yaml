@@ -13,10 +13,10 @@
     ~/.bash_aliases:
       force: true
       path: files/bash_aliases
-    ~/.config/:
+    ~/.config/starship.toml:
       glob: true
       create: true
-      path: files/config/*
+      path: files/config/starship.toml
     ~/.bashrc:
       force: true
       path: files/bashrc
