@@ -4,3 +4,4 @@ truncation_symbol = ' '
 
 [shlvl]
 disabled = false
+symbol = '↕'
