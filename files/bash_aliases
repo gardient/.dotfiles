@@ -1,12 +1,20 @@
+# grep aliases
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
+
+# ls aliases
 alias l='ls -CF'
 alias la='ls -lAFh --color=auto'
 alias ll='ls -lFh --color=auto'
 alias ls='ls --color=auto'
-alias aptgrade='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
+
+# thefuck
 alias doit='sudo $(history -p \!\!)'
 alias sudo='sudo '
+
+#utility
+alias aptgrade='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
+
 alias ehco='echo '
 alias loaddotenv='set -a; source .env; set +a;'

@@ -1,0 +1,2 @@
+export LESS='-iFR'
+PROMPT_DIRTRIM=3
