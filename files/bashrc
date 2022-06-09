@@ -130,7 +130,10 @@ fi
 if [ -x "$(which starship)" ]
 then
     starship_title(){
-        title "$(whoami)@$(hostname):$(starship module directory | sed -r 's/\x1b\[(([0-9]{1,2})?(;)?([0-9]{1,2})?)?[m,K,H,f,J]//g')"
+        local ttl="$(whoami)@$(hostname):"
+        ttl+="$(starship module directory | sed -r -e 's/\x1b\[(([0-9]{1,2})?(;)?([0-9]{1,2})?)?[m,K,H,f,J]//g' -e 's/^\xef\x81\x93 /</' -e 's/ $//')"
+        title "$ttl"
+        unset ttl
     }
     starship_precmd_user_func="starship_title"
     eval "$(starship init bash)"
