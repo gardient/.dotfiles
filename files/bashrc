@@ -144,3 +144,6 @@ fi
 [ -x "$(which thefuck)" ] && eval "$(thefuck --alias)" || echo >/dev/null
 
 [ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) || echo >/dev/null
+
+# if rust is installed with rustup
+[ -d "$HOME/.cargo" ] && [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env" || echo >/dev/null
