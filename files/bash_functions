@@ -1,3 +1,9 @@
 title (){
     echo -ne "\e]0;$@\e\\"
 }
+
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+       cd -P -- "$1"
+}
