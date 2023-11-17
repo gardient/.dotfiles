@@ -18,3 +18,5 @@ alias aptgrade='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
 alias ehco='echo '
 alias loaddotenv='set -a; source .env; set +a;'
+
+[ -f "/usr/share/source-highlight/src-hilite-lesspipe.sh" ] && alias lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -M ' || echo -n >/dev/null
