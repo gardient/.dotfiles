@@ -1,6 +1,8 @@
 if [[ -z $(which oh-my-posh) || -n $UPDATE ]]; then
   info "starting posh installation"
 
+  debug installing deps
+  apt install -y unzip
   debug "getting posh install script"
   curl -s https://ohmyposh.dev/install.sh | bash -s
 
