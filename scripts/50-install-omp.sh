@@ -1,4 +1,4 @@
-if [[ -z $POSH_THEME || -n $UPDATE ]]; then
+if [[ -z $(which oh-my-posh) || -n $UPDATE ]]; then
   info "starting posh installation"
 
   debug "getting posh install script"
