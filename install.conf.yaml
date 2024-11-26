@@ -20,6 +20,10 @@
       glob: true
       create: true
       path: files/config/starship.toml
+    ~/.config/mytheme.omp.yaml:
+      glob: true
+      create: true
+      path: files/config/mytheme.omp.yaml
     ~/.bashrc:
       force: true
       path: files/bashrc
