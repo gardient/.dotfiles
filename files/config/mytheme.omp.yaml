@@ -33,9 +33,9 @@ blocks:
       max_depth: 3
       style: agnoster_short
     template: " \uea83 {{ .Path }} "
-    foreground: white
     powerline_symbol: 
     background: p:orange
+    foreground: black
     type: path
     style: powerline
   - properties:
@@ -120,7 +120,7 @@ tooltips:
   leading_diamond: 
   trailing_diamond: 
   template: " \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} "
-  foreground: p:white
+  foreground: black
   background: p:orange
   type: aws
   style: diamond
