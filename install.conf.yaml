@@ -37,6 +37,9 @@
     ~/.bash_env:
       force: true
       path: files/bash_env
+    ~/.tmux.conf:
+      force: true
+      path: files/tmux.conf
 
 - create:
     ~/downloads:
