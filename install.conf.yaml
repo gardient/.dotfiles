@@ -47,10 +47,6 @@
     ~/bin:
     ~/.ssh:
       mode: 0700
-    ~/.ssh/config:
-      mode: 0600
-    ~/.ssh/authorized_keys:
-      mode: 0600
 
 - shell:
     - command: ./run-all-scripts.sh
