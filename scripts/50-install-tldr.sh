@@ -8,7 +8,7 @@ if [[ -z $(type -P tldr) || -n $UPDATE ]]; then
   debug "pip installing tldr"
   pip3 install tldr --user > $output
 
-  success "thefuck installed"
+  success "tldr-pages/tldr installed"
 else
   success "tldr-pages/tldr already installed skipping (add the UPDATE env variable if you want to force update)"
 fi
