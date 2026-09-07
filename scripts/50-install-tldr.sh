@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-source "${DOTFILES:-..}/helpers/log.func"
-source "${DOTFILES:-..}/helpers/install.func"
+source "${DOTFILES:-.}/helpers/log.func"
+source "${DOTFILES:-.}/helpers/install.func"
 init_log "tldr"
 
 is_installed() {

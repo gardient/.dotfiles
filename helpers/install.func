@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "${DOTFILES:-..}/helpers/log.func"
+source "${DOTFILES:-.}/helpers/log.func"
 
 # ensure_installed
 #
