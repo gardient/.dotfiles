@@ -3,6 +3,8 @@
       relink: true
     shell:
       quiet: true
+      stdin: true
+      stdout: true
 
 - clean:
     ~/:
@@ -49,8 +51,11 @@
       mode: 0700
 
 - shell:
-    - command: ./run-all-scripts.sh
-      description: Running scripts
-      stdin: true
-      stdout: true
-      quiet: true
+    - command: ./scripts/40-install-nvim.sh
+    - command: ./scripts/50-get-public-keys.sh
+    - command: ./scripts/50-install-fzf.sh
+    - command: ./scripts/50-install-omp.sh
+    - command: ./scripts/50-install-x-cmd.sh
+    - command: ./scripts/60-install-source-highlight.sh
+    # - command: ./run-all-scripts.sh
+    #   description: Running scripts

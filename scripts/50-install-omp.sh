@@ -1,12 +1,24 @@
-if [[ -z $(which oh-my-posh) || -n $UPDATE ]]; then
-  info "starting posh installation"
+#!/usr/bin/env bash
 
-  debug installing deps
+source "${DOTFILES:-..}/helpers/log.func"
+source "${DOTFILES:-..}/helpers/install.func"
+init_log "omp"
+
+is_installed() {
+  [[ -n $(which oh-my-posh) ]]
+}
+
+install() {
+  debug "installing oh-my-posh"
   sudo apt install -y unzip
-  debug "getting posh install script"
   curl -s https://ohmyposh.dev/install.sh | bash -s
+  success "oh-my-posh installed"
+}
 
-  success "posh installed"
-else
-  success "posh already installed skipping (add the UPDATE env variable if you want to force update)"
-fi
+update() {
+  debug "updating oh-my-posh"
+  oh-my-posh upgrade > $output
+  success "oh-my-posh updated"
+}
+
+ensure_installed

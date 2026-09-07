@@ -1,10 +1,23 @@
-if [[ ! -f "$HOME/.x-cmd.root/X" || -n $UPDATE ]]; then
-  info "starting x-cmd installation"
+#!/usr/bin/env bash
 
-  debug "getting x-cmd install script"
+source "${DOTFILES:-..}/helpers/log.func"
+source "${DOTFILES:-..}/helpers/install.func"
+init_log "x-cmd"
+
+is_installed() {
+  [[ -f "$HOME/.x-cmd.root/X" ]]
+}
+
+install() {
+  debug "installing x-cmd"
   eval "$(curl https://get.x-cmd.com)"
-
   success "x-cmd installed"
-else
-  success "x-cmd already installed skipping (add the UPDATE env variable if you want to force update)"
-fi
+}
+
+update() {
+  debug "updating x-cmd"
+  eval "$(curl https://get.x-cmd.com)"
+  success "x-cmd updated"
+}
+
+ensure_installed

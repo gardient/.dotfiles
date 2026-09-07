@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+output=/dev/null
+if [ "$DEBUG" == 'verbose' ]; then
+  output=/dev/stdout
+fi
+
+__log_initd=0
+
+__log_ctxt=''
+script_name="${BASH_SOURCE[1]}"
+if [[ -n "${script_name}" ]]; then
+  __log_ctxt="$(basename "${script_name}")"
+else
+  __log_ctxt="unknown"
+fi
+
+__print_with_context() {
+  local color="$1"
+  local prefix="$2"
+  local message="$3"
+  if [[ -z "${color}" || -z "${prefix}" || -z "${message}" ]]; then
+    error "invalid arguments provided to __print_with_context"
+    exit 1
+  fi
+  if (( __log_initd == 0 )); then
+    error "log not initialized, call init_log first"
+    exit 1
+  fi
+  printf "\033[0;${color}m${prefix} "
+  if [[ -n "${__log_ctxt}" ]]; then
+    printf "\033[0;4;${color}m${__log_ctxt}\033[0m "
+  fi
+  printf "\033[0;${color}m${message}\033[0m\n"
+}
+
+init_log() {
+  if (( __log_initd == 1 )); then
+    warn "log already initialized, skipping"
+    return
+  fi
+  if [[ $# -eq 0 ]]; then
+    error "no arguments provided to init_log"
+    exit 1
+  fi
+  __log_ctxt="$1"
+  if [[ -n "$DEBUG" ]]; then
+    output=/dev/stdout
+  else
+    output=/dev/null
+  fi
+  __log_initd=1
+}
+
+info() {
+  #printf "\033[0;94m   [INFO]${__log_ctxt[@]} ${@}\033[0m\n"
+  __print_with_context '94' '[INF]' "${@}"
+}
+warn() {
+  #printf "\033[0;33m   [WARN]${__log_ctxt[@]} ${@}\033[0m\n"
+  __print_with_context '33' '[WRN]' "${@}"
+}
+error() {
+  #printf "\033[0;31m  [ERROR]${__log_ctxt[@]} ${@}\033[0m\n"
+  __print_with_context '31' '[ERR]' "${@}"
+}
+success() {
+  #printf "\033[0;32m[SUCCESS]${__log_ctxt[@]} ${@}\033[0m\n"
+  __print_with_context '32' '[SUC]' "${@}"
+}
+debug() {
+  if [ ! -z $DEBUG ] ; then
+    #printf "\033[0;37m  [DEBUG] ${@}\033[0m\n"
+    __print_with_context '37' '[DBG]' "${@}"
+  fi
+}

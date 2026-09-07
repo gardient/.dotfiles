@@ -1,19 +1,27 @@
-if [[ -z $(which fzf) || -n $UPDATE ]]; then
-  info "starting fzf installation"
-  if [ -d ~/.fzf ]; then
-    debug "fzf already cloned. pulling"
-    pushd ~/.fzf > $output
-    git pull > $output
-    popd > $output
-  else
-    debug "cloning fzf repo from https://github.com/junegunn/fzf.git"
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > $output
-  fi
+#!/usr/bin/env bash
+
+source "${DOTFILES:-..}/helpers/log.func"
+source "${DOTFILES:-..}/helpers/install.func"
+init_log "fzf"
+
+is_installed() {
+  [[ -n $(which fzf) ]]
+}
+
+install() {
+  debug "cloning fzf repo from https://github.com/junegunn/fzf.git"
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > $output
 
   debug "installing fzf"
   ~/.fzf/install --all > $output
 
   success "fzf installed"
-else
-  success "fzf already installed skipping (add the UPDATE env variable if you want to force update)"
-fi
+}
+
+update() {
+  debug "updating fzf"
+  ~/.fzf/bin/fzf --update > $output
+  success "fzf updated"
+}
+
+ensure_installed

@@ -1,5 +1,15 @@
-if [[ -z $(type -P tldr) || -n $UPDATE ]]; then
-  info "Installing tldr-pages/tldr"
+#!/usr/bin/env bash
+
+source "${DOTFILES:-..}/helpers/log.func"
+source "${DOTFILES:-..}/helpers/install.func"
+init_log "tldr"
+
+is_installed() {
+  [[ -n $(type -P tldr) ]]
+}
+
+install() {
+  debug "Installing tldr-pages/tldr"
 
   debug "updating apt"
   sudo apt update > $output
@@ -9,6 +19,12 @@ if [[ -z $(type -P tldr) || -n $UPDATE ]]; then
   pip3 install tldr --user > $output
 
   success "tldr-pages/tldr installed"
-else
-  success "tldr-pages/tldr already installed skipping (add the UPDATE env variable if you want to force update)"
-fi
+}
+
+update() {
+  debug "updating tldr-pages/tldr"
+  pip3 install --upgrade tldr --user > $output
+  success "tldr-pages/tldr updated"
+}
+
+ensure_installed

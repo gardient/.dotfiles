@@ -1,12 +1,25 @@
-if [[ -z $(type -P source-highlight) || -n $UPDATE ]]; then
-  info "Installing source-highlight"
+#!/usr/bin/env bash
 
-  debug "updating apt"
-  sudo apt update > $output
+source "${DOTFILES:-..}/helpers/log.func"
+source "${DOTFILES:-..}/helpers/install.func"
+init_log "source-highlight"
+
+is_installed() {
+  [[ -n $(type -P source-highlight) ]]
+}
+
+install() {
   debug "installing source-highlight"
+  sudo apt update > $output
   sudo apt install libsource-highlight-common source-highlight -y > $output
-
   success "source-highlight installed"
-else
-  success "source-highlight already installed skipping (add the UPDATE env variable if you want to force update)"
-fi
+}
+
+update() {
+  debug "updating source-highlight"
+  sudo apt update > $output
+  sudo apt install libsource-highlight-common source-highlight -y > $output
+  success "source-highlight updated"
+}
+
+ensure_installed

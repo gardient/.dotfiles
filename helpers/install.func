@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+source "${DOTFILES:-..}/helpers/log.func"
+
+# ensure_installed
+#
+# Usage:
+#   Define is_installed(), install(), and update() in the sourcing
+#   script, then simply call:
+#     ensure_installed
+#
+# Behavior:
+#   1. Calls is_installed(). If it returns non-zero, calls install().
+#   2. Else if UPDATE is set (non-empty), calls update().
+#   3. Otherwise, prints a status message.
+ensure_installed() {
+  if [ "$(type -t is_installed)" != "function" ]; then
+    error "ensure_installed: 'is_installed' function is not defined"
+    return 1
+  fi
+  if [ "$(type -t install)" != "function" ]; then
+    error "ensure_installed: 'install' function is not defined"
+    return 1
+  fi
+  if [ "$(type -t update)" != "function" ]; then
+    error "ensure_installed: 'update' function is not defined"
+    return 1
+  fi
+
+  if ! is_installed; then
+    info "Installing ..."
+    install
+  elif [ -n "${UPDATE:-}" ]; then
+    info "Updating ..."
+    update
+  else
+    success "Nothing to do: condition met and UPDATE not set."
+  fi
+}
