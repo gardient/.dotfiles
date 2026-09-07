@@ -1,6 +1,7 @@
 $schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 version: 4
 final_space: true
+patch_pwsh_bleed: true
 blocks:
   - type: prompt
     alignment: left
@@ -8,7 +9,7 @@ blocks:
       - type: session
         style: plain
         foreground: '#ffffff'
-        template: <p:struct>┏[</>{{ .UserName }}<p:struct>]</>
+        template: <p:struct>┏[</>{{ .UserName }}{{ if .SSHSession }}@{{ .HostName }}{{ end }}<p:struct>]</>
         cache:
           duration: 5m
           strategy: session
