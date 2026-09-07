@@ -53,6 +53,7 @@
 - shell:
     - command: chmod +x ./scripts/*.sh
     - command: ./scripts/40-install-nvim.sh
+    - command: ./scripts/45-install-lazyvim.sh
     - command: ./scripts/50-get-public-keys.sh
     - command: ./scripts/50-install-fzf.sh
     - command: ./scripts/50-install-omp.sh

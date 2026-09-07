@@ -11,6 +11,7 @@ is_installed() {
 install() {
   curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash
   ~/.local/bin/bob install stable > $output
+  ~/.local/bin/bob use stable > $output
   success "neovim installed"
 }
 
