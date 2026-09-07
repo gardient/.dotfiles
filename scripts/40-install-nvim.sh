@@ -2,7 +2,7 @@
 
 source "${DOTFILES:-.}/helpers/log.func"
 source "${DOTFILES:-.}/helpers/install.func"
-init_log "nvim"
+init_log "neovim"
 
 #region functions
 
@@ -11,8 +11,8 @@ is_installed() {
 }
 
 install() {
-  apt-get install -y nvim > $output
-  success "nvim installed"
+  sudo apt-get install -y neovim > $output
+  success "neovim installed"
 
   # install lazyvim
   debug "installing lazyvim"
@@ -31,9 +31,9 @@ install() {
 }
 
 update() {
-  apt-get update > $output
-  apt-get upgrade -y nvim > $output
-  success "nvim updated"
+  sudo apt-get update > $output
+  sudo apt-get upgrade -y neovim > $output
+  success "neovim updated"
 }
 
 #endregion
