@@ -4,42 +4,19 @@ source "${DOTFILES:-.}/helpers/log.func"
 source "${DOTFILES:-.}/helpers/install.func"
 init_log "neovim"
 
-#region functions
-
 is_installed() {
-  [[ -d "~/.config/nvim" ]]
+  [[ -f "$(which nvim)" ]]
 }
 
 install() {
-  sudo apt-get install software-properties-common > $output
-  sudo add-apt-repository ppa:neovim-ppa/stable -y > $output
-  sudo apt-get update > $output
-  sudo apt-get install -y neovim > $output
-  sudo apt-get install python-dev python-pip python3-dev python3-pip > $output
+  curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash
+  ~/.local/bin/bob install stable > $output
   success "neovim installed"
-
-  # install lazyvim
-  debug "installing lazyvim"
-  # required
-  mv ~/.config/nvim{,.bak} > $output
-
-  # optional but recommended
-  mv ~/.local/share/nvim{,.bak} > $output
-  mv ~/.local/state/nvim{,.bak} > $output
-  mv ~/.cache/nvim{,.bak} > $output
-
-  git clone https://github.com/LazyVim/starter ~/.config/nvim > $output
-
-  rm -rf ~/.config/nvim/.git
-  success "lazyvim installed"
 }
 
 update() {
-  sudo apt-get update > $output
-  sudo apt-get upgrade -y neovim > $output
+  ~/.local/bin/bob install stable > $output
   success "neovim updated"
 }
-
-#endregion
 
 ensure_installed
