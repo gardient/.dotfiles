@@ -11,7 +11,11 @@ is_installed() {
 }
 
 install() {
+  sudo apt-get install software-properties-common > $output
+  sudo add-apt-repository ppa:neovim-ppa/stable -y > $output
+  sudo apt-get update > $output
   sudo apt-get install -y neovim > $output
+  sudo apt-get install python-dev python-pip python3-dev python3-pip > $output
   success "neovim installed"
 
   # install lazyvim
