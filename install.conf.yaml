@@ -53,11 +53,9 @@
 - shell:
     - command: chmod +x ./scripts/*.sh
     - command: ./scripts/40-install-nvim.sh
-    - command: ./scripts/45-install-lazyvim.sh
+    - command: ./scripts/41-install-lazyvim.sh
     - command: ./scripts/50-get-public-keys.sh
     - command: ./scripts/50-install-fzf.sh
     - command: ./scripts/50-install-omp.sh
     - command: ./scripts/50-install-x-cmd.sh
     - command: ./scripts/60-install-source-highlight.sh
-    # - command: ./run-all-scripts.sh
-    #   description: Running scripts
