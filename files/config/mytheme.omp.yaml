@@ -9,7 +9,7 @@ blocks:
       - type: session
         style: plain
         foreground: '#ffffff'
-        template: <p:struct>┏[</>{{ .UserName }}{{ if .SSHSession }}@{{ .HostName }}{{ end }}<p:struct>]</>
+        template: <p:struct>┏[</>{{ .UserName }}{{ if .SSHSession }}<p:struct>@</>{{ .HostName }}{{ end }}<p:struct>]</>
         cache:
           duration: 5m
           strategy: session
