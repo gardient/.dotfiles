@@ -12,6 +12,7 @@ install() {
   curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash
   ~/.local/bin/bob install stable > $output
   ~/.local/bin/bob use stable > $output
+  ln -sf ~/.local/share/bob/nvim-bin/nvim ~/.local/bin/nvim
   success "neovim installed"
 }
 
