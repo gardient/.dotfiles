@@ -1,141 +1,90 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-
-palette:
-  black: "#262B44"
-  blue: "#4B95E9"
-  green: "#59C9A5"
-  orange: "#F07623"
-  red: "#D81E5B"
-  white: "#E0DEF4"
-  yellow: "#F3AE35"
-secondary_prompt:
-  template: "{{ if eq .Shell \"pwsh\" }}>{{ else }}\\u276f {{ end }}\n"
-  foreground: darkGray
-  background: transparent
-transient_prompt:
-  template: "❯ "
-  foreground: blue
-  background: transparent
-console_title_template: "{{ .Shell }} in {{ .Folder }}"
-blocks:
-- type: prompt
-  alignment: left
-  segments:
-  - properties:
-      cache_duration: none
-    template: "{{ if .SSHSession }}\ueba9 {{ .UserName }}@{{ .HostName }}{{ end }}"
-    foreground: black
-    background: yellow
-    type: session
-    style: powerline
-  - properties:
-      cache_duration: none
-      max_depth: 3
-      style: agnoster_short
-    template: " \uea83 {{ .Path }} "
-    powerline_symbol: 
-    background: p:orange
-    foreground: black
-    type: path
-    style: powerline
-  - properties:
-      branch_max_length: 25
-      cache_duration: none
-      fetch_status: true
-      fetch_upstream_icon: true
-    template: "{{ .HEAD }}{{ if .Behind }}⇣{{ end }}{{ if .Ahead }}⇡{{ end }}{{ if .Working.Changed }} \uf044 {{ end }}{{ if .Staging.Changed }}\uf046{{ end }} "
-    foreground: black
-    powerline_symbol: 
-    background: green
-    type: git
-    style: powerline
-  newline: true
-- type: prompt
-  alignment: right
-  overflow: hide
-  segments:
-  - properties:
-      cache_duration: none
-      display_mode: files
-      fetch_package_manager: false
-      home_enabled: false
-    template: "\ue718 "
-    foreground: green
-    background: transparent
-    type: node
-    style: plain
-  - properties:
-      cache_duration: none
-      fetch_version: false
-    template: "\ue626 "
-    foreground: p:blue
-    background: transparent
-    type: go
-    style: plain
-  - properties:
-      cache_duration: none
-      display_mode: files
-      fetch_version: false
-      fetch_virtual_env: false
-    template: "\ue235 "
-    foreground: yellow
-    background: transparent
-    type: python
-    style: plain
-  - properties:
-      cache_duration: none
-      style: round
-      threshold: 500
-    template: " <#fefefe>\ueba2</> {{ .FormattedMs }} "
-    foreground: yellow
-    background: transparent
-    type: executiontime
-    style: plain
-- type: prompt
-  alignment: left
-  segments:
-  - properties:
-      cache_duration: none
-    template: 
-    foreground: white
-    powerline_symbol: 
-    background: red
-    type: root
-    style: plain
-  - properties:
-      always_enabled: true
-      cache_duration: none
-    template: ❯
-    foreground: blue
-    background: transparent
-    type: status
-    style: plain
-    foreground_templates:
-    - "{{ if gt .Code 0 }}red{{ end }}"
-    - "{{ if eq .Code 0 }}green{{ end }}"
-  newline: true
-tooltips:
-- properties:
-    display_default: true
-  leading_diamond: 
-  trailing_diamond: 
-  template: " \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} "
-  foreground: black
-  background: p:orange
-  type: aws
-  style: diamond
-  tips:
-  - aws
-- properties:
-    display_default: true
-  leading_diamond: 
-  trailing_diamond: 
-  template: " \uebd8 {{ .Name }} "
-  foreground: p:white
-  background: p:blue
-  type: az
-  style: diamond
-  tips:
-  - az
-version: 3
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 4
 final_space: true
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: session
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>┏[</>{{ .UserName }}<p:struct>]</>
+        cache:
+          duration: 5m
+          strategy: session
+      - type: git
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[</>{{ .HEAD }}<p:struct>]</>
+        cache:
+          duration: 2s
+          strategy: session
+      - type: root
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[</><p:thndr></><p:struct>]</>
+        cache:
+          duration: 5m
+          strategy: session
+      - type: status
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[x</>{{ reason .Code }}<p:struct>]</>
+      - type: dotnet
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[</>.NET {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }} <p:struct>]</>
+        cache:
+          duration: 168h
+          strategy: folder
+      - type: go
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:struct>]</>
+        cache:
+          duration: 168h
+          strategy: folder
+      - type: node
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[</> {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}<p:struct>]</>
+        cache:
+          duration: 168h
+          strategy: folder
+      - type: python
+        style: plain
+        foreground: '#ffffff'
+        template: >-
+          <p:struct>[</> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end
+          }}<p:struct>]</>
+        cache:
+          duration: 168h
+          strategy: folder
+      - type: rust
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:struct>]</>
+        cache:
+          duration: 168h
+          strategy: folder
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: path
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>┖[</>{{ .Path }}<p:struct>]></>
+        options:
+          style: powerlevel
+          max_width: 40
+transient_prompt:
+  template: '> '
+  foreground: p:struct
+  background: transparent
+secondary_prompt:
+  template: '>> '
+  foreground: p:struct
+palette:
+  struct: '#CB4B16'
+  thndr: '#fbff00'
