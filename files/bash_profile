@@ -1,9 +1,3 @@
-# Auto-start tmux on SSH login
-if [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
-  sleep 0.2
-  exec tmux new-session -As ssh_tmux
-fi
-
 # Load .bashrc (common pattern)
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
