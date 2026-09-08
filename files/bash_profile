@@ -1,0 +1,19 @@
+# Load .bashrc (common pattern)
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+
+# Auto-start tmux on SSH login
+if [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+  exec tmux new-session -As ssh_tmux
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi

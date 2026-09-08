@@ -18,6 +18,9 @@
     ~/.bash_functions:
       force: true
       path: files/bash_functions
+    ~/.bash_profile:
+      force: true
+      path: files/bash_profile
     ~/.config/starship.toml:
       glob: true
       create: true
