@@ -5,7 +5,7 @@ source "${DOTFILES:-.}/helpers/install.func"
 init_log "lazyvim"
 
 is_installed() {
-  [[ -f "~/.config/nvim/lua/config/lazy.lua" ]]
+  [[ -f "$HOME/.config/nvim/lua/config/lazy.lua" ]]
 }
 
 install() {
