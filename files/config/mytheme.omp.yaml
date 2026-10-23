@@ -10,15 +10,9 @@ blocks:
         style: plain
         foreground: '#ffffff'
         template: <p:struct>┏[</>{{ .UserName }}{{ if .SSHSession }}<p:struct>@</>{{ .HostName }}{{ end }}<p:struct>]</>
+        options: {}
         cache:
           duration: 5m
-          strategy: session
-      - type: git
-        style: plain
-        foreground: '#ffffff'
-        template: <p:struct>[</>{{ .HEAD }}<p:struct>]</>
-        cache:
-          duration: 2s
           strategy: session
       - type: root
         style: plain
@@ -27,10 +21,22 @@ blocks:
         cache:
           duration: 5m
           strategy: session
+      - type: nix-shell
+        style: plain
+        powerline_symbol: 
+        template: <p:struct>[</> {{ if ne .Type "unknown" }} {{ .Type }}{{ end }}<p:struct>]</>
+        foreground: '#ffffff'
       - type: status
         style: plain
         foreground: '#ffffff'
         template: <p:struct>[x</>{{ reason .Code }}<p:struct>]</>
+      - type: git
+        style: plain
+        foreground: '#ffffff'
+        template: <p:struct>[</>{{ .HEAD }}<p:struct>]</>
+        cache:
+          duration: 2s
+          strategy: session
       - type: dotnet
         style: plain
         foreground: '#ffffff'
