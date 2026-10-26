@@ -6,10 +6,14 @@ blocks:
   - type: prompt
     alignment: left
     segments:
+      - type: text
+        style: plain
+        template: ┏
+        foreground: p:struct
       - type: session
         style: plain
         foreground: '#ffffff'
-        template: <p:struct>┏[</>{{ .UserName }}{{ if .SSHSession }}<p:struct>@</>{{ .HostName }}{{ end }}<p:struct>]</>
+        template: <p:struct>[</>{{ .UserName }}{{ if .SSHSession }}<p:struct>@</>{{ .HostName }}{{ end }}<p:struct>]</>
         options: {}
         cache:
           duration: 5m
@@ -21,15 +25,17 @@ blocks:
         cache:
           duration: 5m
           strategy: session
-      - type: nix-shell
-        style: plain
-        powerline_symbol: 
-        template: <p:struct>[</> {{ if ne .Type "unknown" }} {{ .Type }}{{ end }}<p:struct>]</>
-        foreground: '#ffffff'
       - type: status
         style: plain
         foreground: '#ffffff'
         template: <p:struct>[x</>{{ reason .Code }}<p:struct>]</>
+      - type: nix-shell
+        style: plain
+        template: <p:struct>[</> {{ if ne .Type "unknown" }}{{ .Type }}{{ end }}<p:struct>]</>
+        cache:
+          duration: 168h
+          strategy: folder
+        foreground: '#ffffff'
       - type: git
         style: plain
         foreground: '#ffffff'
@@ -40,7 +46,7 @@ blocks:
       - type: dotnet
         style: plain
         foreground: '#ffffff'
-        template: <p:struct>[</>.NET {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }} <p:struct>]</>
+        template: <p:struct>[</>.NET {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end -}} <p:struct>]</>
         cache:
           duration: 168h
           strategy: folder
@@ -78,10 +84,14 @@ blocks:
     alignment: left
     newline: true
     segments:
+      - type: text
+        style: plain
+        template: ┖
+        foreground: p:struct
       - type: path
         style: plain
         foreground: '#ffffff'
-        template: <p:struct>┖[</>{{ .Path }}<p:struct>]></>
+        template: <p:struct>[</>{{ .Path }}<p:struct>]></>
         options:
           style: powerlevel
           max_width: 40
