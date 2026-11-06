@@ -80,12 +80,17 @@ blocks:
         cache:
           duration: 168h
           strategy: folder
+      - type: executiontime
+        style: plain
+        template: <p:struct>[</> {{ .FormattedMs }}<p:struct>]</>
+        foreground: '#ffffff'
   - type: prompt
     alignment: left
     newline: true
     segments:
       - type: text
         style: plain
+        powerline_symbol: 
         template: ┖
         foreground: p:struct
       - type: path
