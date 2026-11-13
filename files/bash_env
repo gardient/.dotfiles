@@ -1,2 +1,10 @@
 export LESS='-iFR'
 PROMPT_DIRTRIM=3
+
+if [[ -x "$(command -v nvim)" ]]; then
+  export EDITOR='nvim'
+  export SUDO_EDITOR='nvim'
+else
+  export EDITOR='vim'
+  export SUDO_EDITOR='vim'
+fi
