@@ -53,24 +53,24 @@ init_log() {
 }
 
 info() {
-  #printf "\033[0;94m   [INFO]${__log_ctxt[@]} ${@}\033[0m\n"
+  #printf "\033[0;94m[INF]${__log_ctxt[@]} ${@}\033[0m\n"
   __print_with_context '94' '[INF]' "${@}"
 }
 warn() {
-  #printf "\033[0;33m   [WARN]${__log_ctxt[@]} ${@}\033[0m\n"
+  #printf "\033[0;33m[WRN]${__log_ctxt[@]} ${@}\033[0m\n"
   __print_with_context '33' '[WRN]' "${@}"
 }
 error() {
-  #printf "\033[0;31m  [ERROR]${__log_ctxt[@]} ${@}\033[0m\n"
+  #printf "\033[0;31m[ERR]${__log_ctxt[@]} ${@}\033[0m\n"
   __print_with_context '31' '[ERR]' "${@}"
 }
 success() {
-  #printf "\033[0;32m[SUCCESS]${__log_ctxt[@]} ${@}\033[0m\n"
+  #printf "\033[0;32m[SUC]${__log_ctxt[@]} ${@}\033[0m\n"
   __print_with_context '32' '[SUC]' "${@}"
 }
 debug() {
-  if [ ! -z $DEBUG ] ; then
-    #printf "\033[0;37m  [DEBUG] ${@}\033[0m\n"
+  if [[ -n "$DEBUG" ]]; then
+    #printf "\033[0;37m[DBG] ${@}\033[0m\n"
     __print_with_context '37' '[DBG]' "${@}"
   fi
 }
